@@ -1,0 +1,35 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown mt-5">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first mt-5">
+      <h1>Log In</h1>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="registerForm" (ngSubmit)="login()">
+      <input type="text" id="loginId" class="fadeIn second" formControlName="loginId" placeholder="login id" required>
+      <div class="mb-3" style="color:red"
+        *ngIf="(this.registerForm.get('loginId')?.touched)&&(this.registerForm.get('loginId')?.dirty)&&(this.registerForm.get('loginId')?.errors)">
+        Invalid User ID</div>
+      <input type="password" id="password" class="fadeIn third" formControlName="password" placeholder="password" required>
+      <div class="mb-3" style="color:red"
+        *ngIf="(this.registerForm.get('password')?.touched)&&(this.registerForm.get('password')?.dirty)&&(this.registerForm.get('password')?.errors)">
+        Invalid password</div>
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    
+    <div id="formFooter">
+        <a class="underlineHover" routerLink="register">Sign Up</a>
+      </div>
+
+  </div>
+</div>
