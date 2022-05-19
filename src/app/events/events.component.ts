@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { UpdateComponent } from '../update/update.component';
 
 @Component({
   selector: 'app-events',
@@ -11,10 +13,15 @@ export class EventsComponent implements OnInit {
   upcomingEvents: any
   searchDate: any
   searchResult: any = []
+  updateId = 0
+  oldData: any = []
+
+  oldDate=''
+  oldDescription=''
 
 
-  constructor(private ds: DataService,private modalService: NgbModal) {
-    
+  constructor(private ds: DataService, private modalService: NgbModal) {
+
     const userId = JSON.parse(localStorage.getItem('currentId') || '')
 
     this.ds.eventList(userId)
@@ -67,6 +74,13 @@ export class EventsComponent implements OnInit {
   clearSearch() {
     location.reload()
   }
+  editEvent(e:any) {
+    const userId = parseInt(JSON.parse(localStorage.getItem('currentId') || ''))
+    this.oldData.push(e.date)
+    this.oldData.push(e.description)
+    this.ds.sendMessage(this.oldData) 
+    
+  }
 
-  
+
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 
 let options = {
@@ -10,8 +11,16 @@ let options = {
   providedIn: 'root'
 })
 export class DataService {
+  updateId = 0
 
-  constructor(private http: HttpClient) { }
+  private messageSource = new Subject<string[]>()
+  msg$ = this.messageSource.asObservable()
+
+  constructor(private http: HttpClient) { 
+  }
+  sendMessage(message: any=[]){
+    this.messageSource.next(message)
+  }
 
   register(userName: any, userId: any, password: any) {
     const data = {
@@ -37,14 +46,24 @@ export class DataService {
     }
     return this.http.post('http://localhost:3000/addEvent', data, this.getOptions())
   }
-  removeItem(userId:any,date: any,description: any) {
+  editEvent(userId: any, data:any=[]) {
+    const entries = {
+      userId,
+      oldDate:data[0],
+      oldDescription:data[1],
+      newDate:data[2],
+      newDescription:data[3],
+
+    }
+    return this.http.post('http://localhost:3000/editEvent', entries, this.getOptions())
+  }
+  removeItem(userId: any, date: any, description: any) {
     const data = {
       userId,
       date,
       description
     }
-    console.log(data);
-    
+
     return this.http.post('http://localhost:3000/removeItem', data, this.getOptions())
   }
   eventList(userId: any) {
@@ -53,8 +72,8 @@ export class DataService {
     }
     return this.http.post('http://localhost:3000/eventList', data, this.getOptions())
   }
-  findEvent(userId:any,date:any){
-    const data={
+  findEvent(userId: any, date: any) {
+    const data = {
       userId,
       date
     }
@@ -75,5 +94,5 @@ export class DataService {
     }
     return options
   }
-  
+
 }

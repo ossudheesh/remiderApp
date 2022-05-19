@@ -9,9 +9,9 @@
     <button (click)="deleteFromParent()" type="button" class="btn btn-danger">Delete Account</button>
     <app-delete-confirm (onDelete)="onDelete()" (onCancel)="onCancel()" [item]=currentId></app-delete-confirm>
     <div class="row">
-        <div class="col1">
+        <div class="col col-md-6">
             <app-update></app-update>
-            <div *ngIf="" class="wrapper fadeInDown ">
+            <div *ngIf="updateId==0" class="wrapper fadeInDown ">
                 <div id="formContent">
 
                     <!-- Tabs Titles -->
@@ -38,7 +38,7 @@
             </div>
 
         </div>
-        <div class="col1">
+        <div class="col col-md-6">
             <app-events></app-events>
         </div>
     </div>

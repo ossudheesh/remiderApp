@@ -1,6 +1,7 @@
 import { decimalDigest } from '@angular/compiler/src/i18n/digest';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventsComponent } from '../events/events.component';
 import { DataService } from '../services/data.service';
 
 
@@ -16,14 +17,21 @@ export class DashboardComponent implements OnInit {
   description=""
   currentUser=JSON.parse(localStorage.getItem('currentUser') || '')
   currentId=""
+  updateId=0
 
 
   constructor(private ds:DataService,private router:Router) {
-    
    }
 
   ngOnInit(): void {
+    this.ds.msg$
+    .subscribe(message=>{
+      if(message){
+        this.updateId=1
+      }
+    })
   }
+  
   deleteFromParent() {
     this.currentId = JSON.parse(localStorage.getItem("currentId")||'')
   }
