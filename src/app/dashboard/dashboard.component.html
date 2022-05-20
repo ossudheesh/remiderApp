@@ -1,10 +1,9 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 <div class="container ">
-    <h1 class="mt-5">Dashboard </h1>
-    <h4 class="mb-1">Welcome {{currentUser}} !!</h4>
+    <h1 class="mt-5"><b> Dashboard</b> </h1>
+    <h4 class="mb-1">Welcome <b>{{currentUser}}</b> !!</h4>
     <button type="button" (click)="logout()" class="btn btn-warning me-1">Log out</button>
     <button (click)="deleteFromParent()" type="button" class="btn btn-danger">Delete Account</button>
     <app-delete-confirm (onDelete)="onDelete()" (onCancel)="onCancel()" [item]=currentId></app-delete-confirm>
@@ -13,30 +12,20 @@
             <app-update></app-update>
             <div *ngIf="updateId==0" class="wrapper fadeInDown ">
                 <div id="formContent">
-
-                    <!-- Tabs Titles -->
-
-                    <!-- Icon -->
                     <div class="fadeIn first mt-4">
                         <h4 class="mb-3">Add Events</h4>
                     </div>
-
-                    <!-- Login Form -->
-                    <form (ngSubmit)="addEvent()">
-                        <input type="date" [(ngModel)]="myDate" class="fadeIn second" name="myDate"
-                            placeholder="Select Date" required>
-                        <input type="text" rows="4" [(ngModel)]="description" class="fadeIn third" name="desctription"
-                            placeholder="Event Desctription" required="">
+                    <!-- Add Events Form -->
+                    <form [formGroup]="addForm" (ngSubmit)="addEvent()">
+                        <input type="date" [(ngModel)]="myDate" class="fadeIn second" formControlName="myDate"
+                            placeholder="Select Date">
+                        <input type="text" rows="4" [(ngModel)]="description" class="fadeIn third"
+                            formControlName="description" placeholder="Event Desctription">
                         <input type="submit" class="fadeIn fourth " value="Add">
                         <input type="reset" class="fadeIn fourth" value="Clear">
                     </form>
-
-                    <!-- Remind Passowrd -->
-
-
                 </div>
             </div>
-
         </div>
         <div class="col col-md-6">
             <app-events></app-events>

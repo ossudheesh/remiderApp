@@ -1,18 +1,14 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <div class="wrapper fadeInDown mt-5">
   <div id="formContent">
-    <!-- Tabs Titles -->
-
-    <!-- Icon -->
     <div class="fadeIn first mt-5">
       <h1>Sign Up</h1>
     </div>
 
-    <!-- Login Form -->
+    <!-- Register Form -->
     <form [formGroup]="registerForm" (ngSubmit)="register()">
       <input type="text" id="uname" class="fadeIn second" formControlName="uname" placeholder="username" required>
       <div class="mb-3" style="color:red"
@@ -29,10 +25,8 @@
       <input type="submit" class="fadeIn fourth" value="Sign Up">
     </form>
 
-    <!-- Remind Passowrd -->
     <div id="formFooter">
       <a class="underlineHover" routerLink="">Login</a>
     </div>
-
   </div>
 </div>

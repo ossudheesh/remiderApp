@@ -1,32 +1,24 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <div *ngIf="updateId==1" class="wrapper fadeInDown ">
     <div id="formContent">
-
-        <!-- Tabs Titles -->
-
-        <!-- Icon -->
         <div class="fadeIn first mt-4">
             <h4 class="mb-3">Update Event</h4>
             <h6 class=""> Selected Event</h6>
             <h6 class="text-danger">{{oldDate|date:'mediumDate'}} : {{oldDescription}}</h6>
         </div>
 
-        <!-- Login Form -->
-        <form  (ngSubmit)="updateEvent()">
-            <input type="date"  [(ngModel)]="newDate"  class="fadeIn second" name="myDate"
+        <!-- Update Form -->
+        <form [formGroup]="updateForm"  (ngSubmit)="updateEvent()">
+            <input type="date"  [(ngModel)]="newDate"  class="fadeIn second" formControlName="newDate"
                 placeholder="Select Date" required>
-            <input  type="text"[(ngModel)]="newDescription"  rows="4"  class="fadeIn third" name="description"
-                 required="">
+            <input  type="text"[(ngModel)]="newDescription"  rows="4"  class="fadeIn third" formControlName="newDescription"
+                 required>
             <input type="submit" class="fadeIn fourth " value="Save">
             <input (click)="cancelUpdate()" type="reset" class="fadeIn fourth" value="Cancel">
         </form>
-
-        <!-- Remind Passowrd -->
-
-
+        
     </div>
 </div>
